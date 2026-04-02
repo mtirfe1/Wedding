@@ -68,7 +68,7 @@ Open **http://localhost:8080**.
 
 ## `package.json` metadata
 
-After you create your GitHub repository, replace **`REPLACE_GITHUB_USER`** and **`REPLACE_REPO_NAME`** in **`repository`**, **`homepage`**, and **`bugs`** in `package.json` so they point at **your** repo.
+**`repository`**, **`homepage`**, and **`bugs`** point at this site’s GitHub repo; if you fork or rename the repo, update those fields to match.
 
 ## License
 

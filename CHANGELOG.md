@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Documentation aligned with Meron & Tirhas fork (`README.md`, `MAINTENANCE.md`, `CONTRIBUTING.md`, `CHANGELOG.md`).
-- `package.json` renamed for this project (`meron-tirhas-wedding-site`); `repository` / `homepage` / `bugs` use `REPLACE_*` placeholders until your GitHub repo exists.
+- `package.json` renamed for this project (`meron-tirhas-wedding-site`); `repository` / `homepage` / `bugs` set for the live GitHub Pages deployment.
 
 ### Removed
 
@@ -17,4 +17,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Notes
 
-- Set `ogImage` in `js/wedding-config.js` to your live HTTPS image URL after GitHub Pages is live.
+- `ogImage` and Open Graph tags use the live Pages URL and `img/hero-min.jpg` for link previews.
