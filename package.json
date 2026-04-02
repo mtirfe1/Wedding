@@ -1,0 +1,41 @@
+{
+  "name": "meron-tirhas-wedding-site",
+  "version": "1.0.1",
+  "description": "Meron & Tirhas — static wedding website (GitHub Pages, Google Sheets RSVP). Replace REPLACE_* placeholders in repository/homepage/bugs after you create your GitHub repo.",
+  "scripts": {
+    "build": "npx gulp",
+    "check:predeploy": "node scripts/predeploy-check.js",
+    "prepare:deploy": "npm run build && npm run check:predeploy",
+    "watch": "npx gulp watch",
+    "dev": "python3 -m http.server 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REPLACE_GITHUB_USER/REPLACE_REPO_NAME.git"
+  },
+  "keywords": [
+    "wedding",
+    "github-pages",
+    "static-site",
+    "meron-tirhas"
+  ],
+  "author": "Meron & Tirhas",
+  "license": "GPL-3.0",
+  "homepage": "https://REPLACE_GITHUB_USER.github.io/REPLACE_REPO_NAME/",
+  "bugs": {
+    "url": "https://github.com/REPLACE_GITHUB_USER/REPLACE_REPO_NAME/issues"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.25.0"
+  },
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "font-awesome": "^4.7.0",
+    "waypoints": "^4.0.1"
+  }
+}

@@ -1,0 +1,41 @@
+# name: NodeJS with Gulp
+#
+# Disabled on purpose:
+# - This repo is served as a static site (GitHub Pages) and we deploy manually.
+# - Build output (css/styles.min.css + js/scripts.min.js) is generated via `npx gulp` before publishing.
+# Enable this workflow later if you want CI/CD that runs `npm install` + `gulp` and deploys Pages automatically.
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+    
+# permissions:
+#   id-token: write # This is required for requesting the JWT
+#   contents: write # This is required for actions/checkout
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [14.x, 16.x, 18.x]
+
+#     steps:
+#     - uses: actions/checkout@v3
+
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: ${{ matrix.node-version }}
+
+#     - name: Build
+#       run: |
+#         npm install
+#         gulp
+        
+#     - name: Deploy to GitHub Pages
+#       id: deployment
+#       uses: actions/deploy-pages@v1
