@@ -117,6 +117,24 @@ function loadAnalyticsIfConfigured() {
     ga('send', 'pageview');
 }
 
+/**
+ * Resolve asset paths against the site root. Without this, GitHub Pages URLs like
+ * /Wedding-Invite (no trailing slash) make "img/x.jpg" resolve to /img/x.jpg (404).
+ */
+function resolveAssetUrl(relativePath) {
+    var p = window.location.pathname;
+    var basePath;
+    if (p.endsWith('/')) {
+        basePath = p;
+    } else if (/\.html?$/i.test(p)) {
+        basePath = p.replace(/[^/]+$/, '');
+    } else {
+        basePath = p + '/';
+    }
+    var rel = String(relativePath || '').replace(/^\//, '');
+    return window.location.origin + basePath + rel;
+}
+
 function initHeroSlideshow() {
     var C = window.WEDDING_CONFIG || {};
     var heroCfg = C.heroSlideshow || {};
@@ -127,6 +145,10 @@ function initHeroSlideshow() {
     if (images.length === 0) {
         images = ['img/hero-min.jpg'];
     }
+
+    images = images.map(function (src) {
+        return resolveAssetUrl(src);
+    });
 
     var slides = document.querySelectorAll('.hero-slideshow .hero-slide');
     if (!slides || slides.length < 2) {
