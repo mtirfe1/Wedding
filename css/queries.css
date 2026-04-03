@@ -439,6 +439,13 @@
         min-height: 0;
         min-height: 85vh;
         min-height: 85dvh;
+        overflow: hidden;
+    }
+
+    /* iOS/Safari: prevent slideshow layer from bleeding into #invitation */
+    .hero .hero-slideshow {
+        min-height: 0;
+        height: 100%;
     }
 
     .hero .hero-content img {
