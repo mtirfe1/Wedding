@@ -147,6 +147,11 @@ function resolveAssetUrl(relativePath) {
     return window.location.origin + basePath + rel;
 }
 
+/** Safe CSS background-image value from absolute URL (handles quotes / odd chars). */
+function heroBackgroundImage(url) {
+    return 'url(' + JSON.stringify(String(url)) + ')';
+}
+
 function initHeroSlideshow() {
     var C = window.WEDDING_CONFIG || {};
     var heroCfg = C.heroSlideshow || {};
@@ -177,7 +182,7 @@ function initHeroSlideshow() {
     var currentImageIndex = 0;
     var activeSlideIndex = 0;
 
-    slides[activeSlideIndex].style.backgroundImage = "url('" + images[currentImageIndex] + "')";
+    slides[activeSlideIndex].style.backgroundImage = heroBackgroundImage(images[currentImageIndex]);
     slides[activeSlideIndex].classList.add('is-active');
 
     if (images.length === 1) {
@@ -188,7 +193,7 @@ function initHeroSlideshow() {
         var nextImageIndex = (currentImageIndex + 1) % images.length;
         var nextSlideIndex = activeSlideIndex === 0 ? 1 : 0;
 
-        slides[nextSlideIndex].style.backgroundImage = "url('" + images[nextImageIndex] + "')";
+        slides[nextSlideIndex].style.backgroundImage = heroBackgroundImage(images[nextImageIndex]);
         slides[nextSlideIndex].classList.add('is-active');
         slides[activeSlideIndex].classList.remove('is-active');
 
@@ -196,7 +201,22 @@ function initHeroSlideshow() {
         currentImageIndex = nextImageIndex;
     }
 
-    setInterval(advanceSlide, intervalMs);
+    /* Preload every frame so the next slide is decoded before we fade — avoids empty/black backgrounds on desktop. */
+    var preloadRemaining = images.length;
+    var rotationStarted = false;
+    function onPreloaded() {
+        preloadRemaining -= 1;
+        if (preloadRemaining <= 0 && !rotationStarted) {
+            rotationStarted = true;
+            setInterval(advanceSlide, intervalMs);
+        }
+    }
+    images.forEach(function (src) {
+        var img = new Image();
+        img.onload = onPreloaded;
+        img.onerror = onPreloaded;
+        img.src = src;
+    });
 }
 
 $(document).ready(function () {
