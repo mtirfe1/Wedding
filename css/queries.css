@@ -622,12 +622,14 @@
     }
 }
 
-/* Dress code modal: always vertically centered */
-#dc-modal {
+/* Dress code + RSVP thank-you (add to calendar): vertically centered above fixed nav */
+#dc-modal,
+#rsvp-modal {
     z-index: 10001; /* above fixed header/nav (z-index: 10000) */
 }
 
-#dc-modal .modal-dialog {
+#dc-modal .modal-dialog,
+#rsvp-modal .modal-dialog {
     margin: 0;
     position: absolute;
     top: 50%;
