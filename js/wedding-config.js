@@ -6,7 +6,7 @@ window.WEDDING_CONFIG = {
     pageTitle: 'Meron & Tirhas — Wedding',
     metaDescription: 'We would love for you to join us on our wedding day.',
     /** Link-preview image (Open Graph / iMessage). Hero slideshow uses heroSlideshow.images — not this field. */
-    ogImage: 'https://mtirfe1.github.io/Wedding-Invite/img/hero-min.jpg',
+    ogImage: 'https://meronadyam.com/img/hero-min.jpg',
 
     /** HTML line under “We are getting hitched” (you can use <sup> for ordinals). */
     invitationLineHtml:
