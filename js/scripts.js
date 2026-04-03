@@ -317,9 +317,14 @@ $(document).ready(function () {
             if (target.length) {
                 closeMobileNav();
                 e.preventDefault();
+                /* Match css/queries.css scroll-padding: wider nav + safe-area on phones */
+                var navOffset =
+                    window.matchMedia && window.matchMedia('(max-width: 991px)').matches
+                        ? 120
+                        : 90;
                 $('html,body').animate(
                     {
-                        scrollTop: target.offset().top - 90
+                        scrollTop: target.offset().top - navOffset
                     },
                     2000
                 );

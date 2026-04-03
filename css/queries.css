@@ -403,8 +403,6 @@
 @media screen and (max-width: 767px) {
     html {
         -webkit-text-size-adjust: 100%;
-        /* Native anchor scroll + fixed header (pairs with section scroll-margin) */
-        scroll-padding-top: 100px;
         touch-action: manipulation;
     }
 
@@ -592,6 +590,28 @@
 
     footer {
         padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+}
+
+/*
+ * Fixed nav + notch: 100px (styles.min.css) is too small on many phones — #invitation
+ * and other hash targets sit under the bar in Safari/Chrome. Tie offset to safe-area.
+ * Applies to phones and small tablets (≤991px).
+ */
+@media screen and (max-width: 991px) {
+    html {
+        scroll-padding-top: max(118px, calc(72px + env(safe-area-inset-top, 0px)));
+    }
+
+    #intro,
+    #invitation,
+    #events,
+    #instagram,
+    #eng-pics,
+    #video-bg,
+    #map,
+    #rsvp {
+        scroll-margin-top: max(118px, calc(72px + env(safe-area-inset-top, 0px)));
     }
 }
 
