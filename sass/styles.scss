@@ -60,8 +60,9 @@ section .header {
   padding: $section-padding;
 }
 
-/* Fixed header: in-page links (#intro, #map, …) scroll with space below the bar */
+/* Fixed header: in-page links (#intro, #invitation, #map, …) scroll with space below the bar */
 #intro,
+#invitation,
 #events,
 #instagram,
 #eng-pics,
