@@ -1,7 +1,6 @@
-// Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
-@import url(https://fonts.googleapis.com/css?family=Merriweather:400,300,400italic,300italic,700,700italic);
-@import url(https://fonts.googleapis.com/css?family=Nunito:400,300,700);
+// Google Fonts — Instrument Sans (UI/body) + Space Mono (labels / accents).
+// "Sounds Right" (Playtype) is not on Google Fonts; add @font-face + a font-family variable if you license it.
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 // Imports
 //@import "compass";
 @import "partials/typography";
@@ -54,10 +53,25 @@ ul li {
   list-style: none;
 }
 section .header {
-  padding-bottom: 30px;
+  padding-bottom: $rhythm-block-gap;
 }
 .section-padding {
   padding: $section-padding;
+}
+
+/* In-section vertical rhythm (avoid reusing .section-padding on inner blocks — it doubles 40px bands) */
+.events-day-divider {
+  margin: $rhythm-section-gap 0 $rhythm-tight;
+  text-align: center;
+}
+
+.events-cta-row {
+  padding-top: $rhythm-section-gap;
+  padding-bottom: 0;
+}
+
+.map-actions__cell {
+  padding: 8px;
 }
 
 /* Fixed header: in-page links (#intro, #invitation, #map, …) scroll with space below the bar */
@@ -852,7 +866,7 @@ Embed video
 Google map
 ========================================================================== */
 section#map > .text-center:first-child {
-  padding-bottom: 24px;
+  padding-bottom: $rhythm-block-gap;
 }
 
 #map-canvas {
@@ -895,7 +909,7 @@ section#map > .text-center:first-child {
 RSVP form
 ========================================================================== */
 .rsvp {
-  padding-bottom: 30px;
+  /* Vertical padding: use .section-padding on <section class="rsvp"> for parity with other bands */
   .rsvp-form {
     .rsvp-btn {
       padding: 15px 0;

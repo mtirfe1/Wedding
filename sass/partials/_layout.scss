@@ -1,6 +1,10 @@
 // Layout variables partial
+// Vertical rhythm: sections use $section-padding; inside large sections use $rhythm-* for stacks.
 
 $section-padding: 40px 0;
+$rhythm-section-gap: 32px; // between subsections (e.g. event days)
+$rhythm-block-gap: 24px; // title → content
+$rhythm-tight: 16px;
 
 section.intro, section.features-extra, section.rsvp {
 	background: $section-light;
