@@ -118,10 +118,23 @@ function loadAnalyticsIfConfigured() {
 }
 
 /**
- * Resolve asset paths against the site root. Without this, GitHub Pages URLs like
- * /Wedding-Invite (no trailing slash) make "img/x.jpg" resolve to /img/x.jpg (404).
+ * Absolute URL for a site-root-relative asset (e.g. "img/hero.jpg").
+ * Derives the site root from the main stylesheet URL so it works for:
+ * - GitHub Pages project URLs with or without a trailing slash
+ * - Custom domains at /
+ * - pathname quirks (ogImage / meta tags do not affect this — hero is separate)
  */
 function resolveAssetUrl(relativePath) {
+    var rel = String(relativePath || '').replace(/^\//, '');
+    var link = document.querySelector('link[rel="stylesheet"][href*="styles.min"]');
+    if (link && link.href) {
+        try {
+            var siteRoot = new URL('../', link.href).href;
+            return new URL(rel, siteRoot).href;
+        } catch (err) {
+            /* fall through */
+        }
+    }
     var p = window.location.pathname;
     var basePath;
     if (p.endsWith('/')) {
@@ -131,7 +144,6 @@ function resolveAssetUrl(relativePath) {
     } else {
         basePath = p + '/';
     }
-    var rel = String(relativePath || '').replace(/^\//, '');
     return window.location.origin + basePath + rel;
 }
 
