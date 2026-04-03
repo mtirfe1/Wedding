@@ -37,7 +37,7 @@ window.WEDDING_CONFIG = {
     venueAddress: '12920 122St NW, Edmonton, AB T5E 6J1, Canada',
     contactName: 'Saturday July 25th',
     /** E.164 or formatted strings; empty strings are skipped. */
-    contactPhones: ['+1 (780) 655-7461', ''],
+    contactPhones: ['+1 (780) 999-7885', ''],
 
     /** Uber deep link — create at https://developer.uber.com/ — or set uberDeepLink to '' to hide. */
     uberDeepLink:
@@ -66,12 +66,15 @@ window.WEDDING_CONFIG = {
      */
     validInviteCodes: ['Love2026'],
 
-    rsvpDeadlineText: 'Please RSVP by May 1, 2026',
+    rsvpDeadlineText: 'Please RSVP by June 10, 2026',
 
     /** Universal Analytics — leave uaId empty to disable. */
     analytics: {
         uaId: '',
     },
 
-    footerHtml: 'Made with love for our family & friends',
+    footerHtml:
+        'Made with love for our family & friends<br>' +
+        'For any questions, please contact Samuel at ' +
+        '<a href="tel:+17809997885">(780) 999-7885</a>',
 };
