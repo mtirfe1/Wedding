@@ -1,4 +1,5 @@
-// Typography partial
+// Typography partial — scale + line-heights live here; responsive steps in styles.scss (end).
+// Desktop: h1 60→48→40, h2 40→34→28, h3 18→20 (≤767), body 15px / ~1.93 line-height; ≤767 body 16px / 1.65.
 @import "partials/colors";
 
 // Fonts — Instrument Sans + Space Mono ("Sounds Right" is commercial; see note in styles.scss)
@@ -14,24 +15,43 @@ $normal: 400;
 $semibold: 500;
 $bold: 700;
 
-// Sizes
-
+// Type scale — desktop (default)
 $font-size-h1: 60px;
 $font-size-h2: 40px;
-$font-size-h3: 24px;
+// Section titles (uppercase); was incorrectly using $font-size-h4 before
+$font-size-h3: 18px;
 $font-size-h4: 18px;
 $font-size-h5: 15px;
 $font-size-p: 15px;
 $nav-font-size: 13px;
 $blog-post-title: 11px;
 
-// Responsive Sizes
+// Responsive steps
+$font-size-h1-md: 48px;
+$font-size-h2-md: 34px;
+$font-size-h1-sm: 40px;
+$font-size-h2-sm: 28px;
+$font-size-h3-sm: 20px;
 
-$responsive-h1: 40px;
+// Line height — unitless (works with any font-size)
+$line-height-body: 1.65; // phones / long-form comfort (also iOS-friendly with 16px body)
+$line-height-body-desktop: 1.933; // ~29px at 15px — matches original template desktop rhythm
+$line-height-h1: 1.12;
+$line-height-h2: 1.22;
+$line-height-h3: 1.3;
+$line-height-h4: 1.35;
+$line-height-h5: 1.45;
 
-// Line height
-
+// Legacy: paragraph spacing used in a few vertical calculations; prefer $line-height-body for new rules
 $base-line-height: 29px;
+
+// Paragraph trailing space (between stacked paragraphs — not “double gap” before headings; see .stack)
+$p-trailing: 1.125rem;
+
+// Component / UI (optional tokens)
+$font-size-lead: 20px;
+$font-size-hero-strip-accent: 25px;
+$font-size-down-arrow: 30px;
 
 // Styles
 
@@ -40,37 +60,41 @@ Typography
 ========================================================================== */
 p {
   font-size: $font-size-p;
-  line-height: $base-line-height;
+  line-height: $line-height-body-desktop;
   color: $txt-primary;
-  padding-bottom: 20px;
+  padding-bottom: $p-trailing;
 }
 
 h1 {
   font-size: $font-size-h1;
+  line-height: $line-height-h1;
 }
 
 h2 {
   font-size: $font-size-h2;
   font-weight: $light;
+  line-height: $line-height-h2;
   color: $h2-color;
 }
 
 h3 {
   color: $h3-color;
-  font-size: $font-size-h4;
+  font-size: $font-size-h3;
   font-weight: $bold;
   text-transform: uppercase;
   letter-spacing: 3px;
-  line-height: $base-line-height;
+  line-height: $line-height-h3;
 }
 
 h4 {
   font-size: $font-size-h4;
+  line-height: $line-height-h4;
 }
 
 h5 {
   font-family: $accent-font;
   font-size: $font-size-h5;
+  line-height: $line-height-h5;
   color: $h5-color;
   text-transform: uppercase;
   font-weight: $semibold;

@@ -74,6 +74,49 @@ section .header {
   padding: 8px;
 }
 
+/* Content density — vertical stacks (sibling spacing without doubling paragraph padding) */
+.stack > * + * {
+  margin-top: $density-stack;
+}
+
+.stack-tight > * + * {
+  margin-top: $density-stack-tight;
+}
+
+.stack-loose > * + * {
+  margin-top: $density-stack-loose;
+}
+
+/* Long-form reading: cap line length on large viewports */
+.density-prose {
+  max-width: $density-prose-max;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#intro .container .col-md-6 p {
+  max-width: $density-prose-max;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Events timeline: clear gaps between day blocks (density without extra <hr>) */
+#events .wp3 + .wp4 {
+  margin-top: $density-stack-loose;
+  padding-top: $density-stack-tight;
+}
+
+#events .events-day-divider + .wp5 {
+  margin-top: $density-stack-tight;
+}
+
+/* Less “hole” at bottom of section copy before next band */
+#invitation.section-padding .container > .row:last-child p:last-child,
+#intro.section-padding .container p:last-child,
+#instagram.section-padding .container > .row:first-child p:last-child {
+  padding-bottom: $density-stack-tight;
+}
+
 /* Fixed header: in-page links (#intro, #invitation, #map, …) scroll with space below the bar */
 #intro,
 #invitation,
@@ -280,7 +323,7 @@ Hero
   min-height: 750px;
   /* vh gives a definite height on wide viewports; avoids % height collapse on slides (mobile used 85vh already). */
   min-height: max(750px, 42vh);
-  background: #111;
+  background: #1a1715;
   position: relative;
   overflow: visible;
 
@@ -344,7 +387,8 @@ Hero
   }
   p.intro {
     color: $txt-light;
-    font-size: 20px;
+    font-size: $font-size-lead;
+    line-height: $line-height-body-desktop;
     font-weight: 300;
     margin-bottom: 80px;
   }
@@ -365,7 +409,7 @@ Hero
 }
 .fixed {
   position: fixed;
-  background-color: rgba(55, 36, 40, .88);
+  background-color: rgba(58, 48, 44, 0.9);
   z-index: 10000;
   width: 100%;
 
@@ -457,7 +501,7 @@ header {
 }
 .down-arrow {
   color: #fff;
-  font-size: 30px;
+  font-size: $font-size-down-arrow;
   position: absolute;
   bottom: 30px;
   left: 50%;
@@ -494,7 +538,6 @@ Intro
 }
 
 #intro {
-  padding-top: 40px;
   img {
     width: 100%;
     height: auto;
@@ -616,7 +659,7 @@ Features-stack
   i {
     font-family: $accent-font;
     font-weight: 300;
-    font-size: 25px;
+    font-size: $font-size-hero-strip-accent;
     color: #F69D52;
     vertical-align: top;
     margin-left: -8px;
@@ -748,9 +791,18 @@ Instagram
 }
 
 /* ==========================================================================
-Engagement Pics
+Engagement Pics — same alignment + density tokens as text sections; full-bleed grid only below title
 ========================================================================== */
 #eng-pics {
+  /* Title band lines up with .container sections; grid stays edge-to-edge */
+  .eng-pics__head + .eng-pics__grid {
+    margin-top: $density-stack-loose;
+  }
+
+  .eng-pics__grid .row + .row {
+    margin-top: $density-stack-tight;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -797,7 +849,9 @@ Engagement Pics
     transition: all 300ms ease-in-out;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
-    opacity: 0; }
+    opacity: 0;
+  }
+
   .img-wrap i {
     color: #fff;
     font-size: 15px;
@@ -805,7 +859,8 @@ Engagement Pics
     width: 15px;
     height: 15px;
     top: 6px;
-    right: 6px; }
+    right: 6px;
+  }
   .img-wrap:hover img, .img-wrap:focus img {
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -836,20 +891,53 @@ Engagement Pics
     top: 75%;
     z-index: -1;
   }
+
 }
 
 /* ==========================================================================
 Embed video
 ========================================================================== */
+/* Full-width band: responsive height (no fixed 300px cap) */
 #video-bg {
-  height: 300px;
-}
-#video-content {
-  width: 100%;
-  height: 100%;
-  padding-top: 100px;
   position: relative;
-  background: rgba(17, 17, 17, 0.5);
+  overflow: hidden;
+  width: 100%;
+  min-height: 280px;
+  height: clamp(300px, 42vh, 720px);
+}
+
+/* Native iframe — cover the band (uses viewport units so video isn’t boxed to a short strip) */
+.video-bg__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.video-bg__media iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 16:9 frame scaled to cover: at least full width & height of #video-bg */
+  width: 177.78vh;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+  border: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#video-content {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 5vh, 56px) 16px;
+  z-index: 1;
+  background: rgba(17, 17, 17, 0.45);
   text-align: center;
 }
 #video-content h5 {
@@ -865,18 +953,23 @@ Embed video
 /* ==========================================================================
 Google map
 ========================================================================== */
+/* Canvas height is only on `#map-canvas`. The white panel (`#map-content`) sizes itself.
+   The wrapper uses negative margin to overlap the map — keep it in sync when you change height:
+   margin-top ≈ -(map height − “clearance” visible above the card). */
+$map-canvas-height-lg: 500px;
+$map-overlap-clearance-lg: 45px; // tweak overlap: larger = card sits lower
+
 section#map > .text-center:first-child {
   padding-bottom: $rhythm-block-gap;
 }
 
 #map-canvas {
-  height: 500px;
+  height: $map-canvas-height-lg;
   width: 100%;
 }
 #map-content-wrapper {
   position: relative;
-  /* Less negative than full map height so the info card sits lower — less overlap with title/map */
-  margin-top: -455px;
+  margin-top: calc(-1 * (#{$map-canvas-height-lg} - #{$map-overlap-clearance-lg}));
   margin-bottom: 170px;
 }
 #map-content {
@@ -1008,6 +1101,58 @@ footer {
     color: #ff415c;
     font-size: 18px;
     margin: 0 2px;
+  }
+}
+
+/* ==========================================================================
+Typography — responsive scale (tokens from partials/_typography.scss)
+========================================================================== */
+@media screen and (max-width: 991px) {
+  h1 {
+    font-size: $font-size-h1-md;
+    line-height: $line-height-h1;
+  }
+
+  h2 {
+    font-size: $font-size-h2-md;
+    line-height: $line-height-h2;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: $font-size-h1-sm;
+    line-height: $line-height-h1;
+  }
+
+  h2 {
+    font-size: $font-size-h2-sm;
+    line-height: $line-height-h2;
+  }
+
+  h3 {
+    font-size: $font-size-h3-sm;
+    letter-spacing: 2px;
+    line-height: 1.35;
+  }
+
+  body p,
+  #intro p,
+  section.events p,
+  #invitation p {
+    font-size: 16px;
+    line-height: $line-height-body;
+    overflow-wrap: break-word;
+  }
+
+  section.events h5 {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  section.events h5 .time {
+    display: inline-block;
+    margin-top: 4px;
   }
 }
 

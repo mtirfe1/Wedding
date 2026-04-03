@@ -1,14 +1,40 @@
 // Layout variables partial
-// Vertical rhythm: sections use $section-padding; inside large sections use $rhythm-* for stacks.
+// Vertical rhythm + content density (spacing scale — use these instead of ad-hoc px).
+// Bands: section chrome | Stack: between sibling blocks | Tight: labels, last lines
 
-$section-padding: 40px 0;
-$rhythm-section-gap: 32px; // between subsections (e.g. event days)
-$rhythm-block-gap: 24px; // title → content
+$section-padding: 52px 0;
+$rhythm-section-gap: 36px;
+$rhythm-block-gap: 24px;
 $rhythm-tight: 16px;
 
-section.intro, section.features-extra, section.rsvp {
-	background: $section-light;
+// Aliases — “density” vocabulary for stacks / prose
+$density-band-y: $section-padding;
+$density-stack: $rhythm-block-gap;
+$density-stack-loose: $rhythm-section-gap;
+$density-stack-tight: $rhythm-tight;
+$density-prose-max: 42rem; // ~672px — comfortable line length on wide screens
+
+// Single-page bands — alternate warm white / soft cream (#f7f3ee)
+#invitation,
+#events,
+#eng-pics,
+#rsvp {
+  background: $section-light;
 }
-section.features, section.events, section.blog {
-	background: $section-dark;
+
+#intro,
+#instagram,
+#map {
+  background: $section-dark;
+}
+
+// Legacy template class names (unused sections on this site — harmless if present)
+section.intro,
+section.features-extra {
+  background: $section-light;
+}
+
+section.features,
+section.blog {
+  background: $section-dark;
 }

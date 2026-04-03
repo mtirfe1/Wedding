@@ -1,3 +1,12 @@
+/** Parse YouTube watch / youtu.be URLs for embed id (11 chars). */
+function extractYoutubeId(url) {
+    if (!url || typeof url !== 'string') {
+        return '';
+    }
+    var m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return m ? m[1] : '';
+}
+
 function applyWeddingConfig() {
     var C = window.WEDDING_CONFIG;
     if (!C) {
@@ -42,11 +51,16 @@ function applyWeddingConfig() {
         $('#video-section-subtitle').text(C.videoSubtitle);
     }
     if (C.youtubeVideoUrl) {
-        var vidProp =
-            "{videoURL:'" +
-            C.youtubeVideoUrl.replace(/'/g, "\\'") +
-            "',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:0, stopAt:120, opacity:1}";
-        $('#bgndVideo').attr('data-property', vidProp);
+        var yid = extractYoutubeId(C.youtubeVideoUrl);
+        if (yid) {
+            var src =
+                'https://www.youtube.com/embed/' +
+                yid +
+                '?autoplay=1&mute=1&controls=0&loop=1&playlist=' +
+                yid +
+                '&playsinline=1&rel=0&modestbranding=1&start=0&end=120';
+            $('#youtube-bg-iframe').attr('src', src);
+        }
     }
     if (C.venueName) {
         $('#venue-name').text(C.venueName);
@@ -331,10 +345,6 @@ $(document).ready(function () {
             }
         }
     });
-
-    /********************** Embed youtube video *********************/
-
-    $('.player').YTPlayer();
 
     /********************** Toggle Map Content **********************/
 

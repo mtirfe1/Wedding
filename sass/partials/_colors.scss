@@ -1,32 +1,30 @@
-// Colours partial
+// Colours partial — soft, warm neutrals + muted champagne gold (less cool blue-gray)
 
-// Text colours
-$txt-primary: rgba(28, 54, 83, 0.6);
-// body font
-$txt-secondary: #3D4351;
-// heading font
+// Text — warm brown-grays (readable on cream / white)
+$txt-primary: rgba(74, 64, 58, 0.78);
+$txt-secondary: #5c534e;
 $txt-light: #fff;
-// header/hero
-$txt-accent: #ACB1B4;
-$form-placeholder: #BCC1C3;
-// form placeholder text
-// Global colours
-$accent-color: #e8ca6f;
-// global accent colour
-$accent-color-hover: #d3b56a;
-// global accent colour hover
+$txt-accent: #9e948c;
+$form-placeholder: #b8aea7;
+
+// Accent — warm champagne (softer than bright gold)
+$accent-color: #d4bc8a;
+$accent-color-hover: #c4ab7a;
+
 $white-color: #fff;
 $black-color: #000;
-// Typography colours
-$h2-color: #3D4351;
-$h3-color: #3D4351;
-$h5-color: #3D4351;
-// Layout colours
-$section-light: #fff;
-$section-dark: #f8f9fd;
-$to-top-bg: #495061;
-$footer-primary: #3D4351;
-$footer-secondary: #373D4A;
-// Keylines
-$keyline-color: #E6E9EA;
-$footer-keyline-color: #4E566C;
+
+$h2-color: #4a423d;
+$h3-color: #4a423d;
+$h5-color: #4a423d;
+
+// Layout — white vs warm paper stripe (replaces cool #f8f9fd)
+$section-light: #fffefc;
+$section-dark: #f7f3ee;
+
+$to-top-bg: #6d6560;
+$footer-primary: #4a423d;
+$footer-secondary: #35302c;
+
+$keyline-color: #e8e2db;
+$footer-keyline-color: #7a726b;

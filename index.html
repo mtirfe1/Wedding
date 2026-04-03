@@ -13,7 +13,7 @@
     <title>Our wedding</title>
     <meta name="description" content="We would love for you to join us on our wedding day.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#f7f3ee">
     <meta property="og:title" content="Our wedding">
     <meta property="og:description" content="We would love for you to join us on our wedding day.">
     <meta property="og:image" content="https://meronadyam.com/img/hero-min.jpg">
@@ -243,19 +243,21 @@
         </div>
         <div class="row section-border wp7">
             <div class="col-md-4 col-md-offset-4">
-                <img src="img/iphone_instagram.jpg">
+                <img src="img/iphone_instagram.png">
             </div>
         </div>
     </div>
 </section>
 
 <section id="eng-pics" class="section-padding">
-    <div class="container-fluid">
+    <div class="container eng-pics__head">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h3 class="header">Engagement Pics</h3>
+                <h3 class="header density-prose">Engagement Pics</h3>
             </div>
         </div>
+    </div>
+    <div class="container-fluid eng-pics__grid">
         <div class="row">
             <div class="col-xs-6 col-sm-4 col-md-3">
                 <a class="fancybox" rel="group" href="img/eng_pics/_RFX2942-lg.jpeg">
@@ -357,8 +359,13 @@
 </section>
 
 <section id="video-bg" class="hidden-sm hidden-xs">
-    <div id="bgndVideo" class="player"
-         data-property="{videoURL:'https://youtu.be/6fa4TDNeTG8',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:0, stopAt:120, opacity:1}">
+    <div class="video-bg__media" aria-hidden="true">
+        <iframe id="youtube-bg-iframe"
+                title="City background video"
+                loading="lazy"
+                src=""
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
     </div>
     <div id="video-content">
         <h5 id="video-section-title">Our city</h5>
@@ -502,7 +509,6 @@
 <script src="js/jquery.fancybox.pack.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/jquery.flexslider-min.js"></script>
-<script src="js/jquery.mb.YTPlayer.min.js"></script>
 <script src="js/vendor/ouical.js"></script>
 <script src="js/wedding-config.js"></script>
 <script src="js/scripts.min.js"></script>
