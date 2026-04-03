@@ -473,7 +473,7 @@
     }
 
     #map-content-wrapper {
-        margin-top: -302px;
+        margin-top: -275px;
         margin-bottom: 90px;
     }
 
@@ -576,7 +576,7 @@
            This ensures more of the Google Maps canvas is visible. */
         /* Keep the "Show info" control aligned like the desktop layout:
            overlap ~= map height (with ~2px extra), so it doesn't drift downward. */
-        margin-top: -302px;
+        margin-top: -275px;
         margin-bottom: 50px;
     }
 }

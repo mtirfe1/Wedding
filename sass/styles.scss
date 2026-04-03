@@ -59,6 +59,17 @@ section .header {
 .section-padding {
   padding: $section-padding;
 }
+
+/* Fixed header: in-page links (#intro, #map, …) scroll with space below the bar */
+#intro,
+#events,
+#instagram,
+#eng-pics,
+#video-bg,
+#map,
+#rsvp {
+  scroll-margin-top: 100px;
+}
 .section-border {
   border-bottom: 1px solid $keyline-color;
 }
@@ -839,17 +850,22 @@ Embed video
 /* ==========================================================================
 Google map
 ========================================================================== */
+section#map > .text-center:first-child {
+  padding-bottom: 24px;
+}
+
 #map-canvas {
   height: 500px;
   width: 100%;
 }
 #map-content-wrapper {
   position: relative;
-  margin-top: -502px;
-  margin-bottom: 150px;
+  /* Less negative than full map height so the info card sits lower — less overlap with title/map */
+  margin-top: -455px;
+  margin-bottom: 170px;
 }
 #map-content {
-  margin-top: 40px;
+  margin-top: 56px;
   padding: 50px 60px;
   background: #fff;
   -webkit-transition: opacity 0.5s, visibility 0.6s, margin-top 0.5s;
