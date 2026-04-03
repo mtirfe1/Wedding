@@ -23,10 +23,6 @@
 
 /* Responsive nav kicks in */
 @media screen and (max-width: 991px) {
-    .hero .hero-rsvp-btn {
-        display: none !important;
-    }
-
     header {
         width: 90%;
         padding-left: 25px;
@@ -321,13 +317,14 @@
         width: 90%;
     }
 
-    .hero .btn {
+    /* In-content CTAs only — not .hero-rsvp-btn (sibling of .container; block/80% made it a full-width bar) */
+    .hero .hero-content .btn {
         display: block;
         width: 80%;
         margin: 0 auto;
     }
 
-    .hero .btn:first-of-type {
+    .hero .hero-content .btn:first-of-type {
         margin-bottom: 20px;
     }
 
@@ -364,10 +361,6 @@
 
     .features {
         padding-bottom: 0;
-    }
-
-    .down-arrow {
-        display: none;
     }
 
     /* Match 767px map block; larger clearance = white panel sits lower */
@@ -446,6 +439,15 @@
     .hero .hero-slideshow {
         min-height: 0;
         height: 100%;
+    }
+
+    /* RSVP + scroll arrow visible on mobile; keep above home indicator */
+    .hero .hero-rsvp-btn {
+        bottom: max(96px, calc(80px + env(safe-area-inset-bottom, 0px)));
+    }
+
+    .hero .down-arrow {
+        bottom: max(22px, env(safe-area-inset-bottom, 0px));
     }
 
     .hero .hero-content img {
