@@ -252,6 +252,8 @@ Hero
 ========================================================================== */
 .hero {
   min-height: 750px;
+  /* vh gives a definite height on wide viewports; avoids % height collapse on slides (mobile used 85vh already). */
+  min-height: max(750px, 42vh);
   background: #111;
   position: relative;
   overflow: visible;
@@ -270,15 +272,20 @@ Hero
     left: 0;
     width: 100%;
     min-height: 750px;
+    min-height: max(750px, 42vh);
     z-index: 1;
+    isolation: isolate;
   }
 
+  /* Use inset instead of height:100% — percentage height fails if slideshow’s used height is indefinite (common on desktop). */
   .hero-slide {
     position: absolute;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
     background-position: center 25%;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -287,11 +294,12 @@ Hero
     background-size: cover;
     opacity: 0;
     transition: opacity 2600ms ease-in-out;
-    will-change: opacity;
+    z-index: 1;
   }
 
   .hero-slide.is-active {
     opacity: 1;
+    z-index: 2;
   }
 
   .hero-rsvp-btn {
