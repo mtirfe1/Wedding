@@ -34,21 +34,21 @@ window.WEDDING_CONFIG = {
     mapLng: -113.513931,
 
     venueName: 'Srpska Sala - Edmonton Serbian Cultural Centre',
-    venueAddress: '12920 122St NW, Edmonton, AB T5E 6J1, Canada',
+    venueAddress: '12920 112St NW, Edmonton, AB T5E 6J1, Canada',
     contactName: 'Saturday July 25th',
     /** E.164 or formatted strings; empty strings are skipped. */
     contactPhones: ['+1 (780) 999-7885', ''],
 
     /** Uber deep link — create at https://developer.uber.com/ — or set uberDeepLink to '' to hide. */
     uberDeepLink:
-        'https://m.uber.com/ul/?action=setPickup&client_id=XS5Wr2y9MECwcDGMNR8m55hPyPdUeI4t&pickup=my_location&dropoff[formatted_address]=12920%20122St%20NW%2C%20Edmonton%2C%20AB%20T5E%206J1%2C%20Canada&dropoff[latitude]=53.587935&dropoff[longitude]=-113.513931',
+        'https://m.uber.com/ul/?action=setPickup&client_id=XS5Wr2y9MECwcDGMNR8m55hPyPdUeI4t&pickup=my_location&dropoff[formatted_address]=12920%20112St%20NW%2C%20Edmonton%2C%20AB%20T5E%206J1%2C%20Canada&dropoff[latitude]=53.587935&dropoff[longitude]=-113.513931',
 
     /** “Add to calendar” modal (after successful RSVP). */
     calendar: {
         title: "Meron & Tirhas's wedding",
         start: new Date('Jul 25, 2026 18:00'),
         end: new Date('Jul 26, 2026 00:00'),
-        address: '12920 122St NW, Edmonton, AB T5E 6J1, Canada',
+        address: '12920 112St NW, Edmonton, AB T5E 6J1, Canada',
         description:
             "We can't wait to celebrate with you. Questions? Reach out to the contacts listed on our site.",
     },
