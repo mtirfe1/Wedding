@@ -15,17 +15,15 @@
         google: function(event) {
             var startTime = formatTime(event.start);
             var endTime = calculateEndTime(event);
-
-            var href = encodeURI([
-                'https://www.google.com/calendar/render',
-                '?action=TEMPLATE',
-                '&text=' + (event.title || ''),
-                '&dates=' + (startTime || ''),
-                '/' + (endTime || ''),
-                '&details=' + (event.description || ''),
-                '&location=' + (event.address || ''),
-                '&sprop=&sprop=name:'
-            ].join(''));
+            /* encodeURIComponent each value — bare & in titles like "Meron & Tirhas" breaks query parsing */
+            var dates = (startTime || '') + '/' + (endTime || '');
+            var href =
+                'https://www.google.com/calendar/render?action=TEMPLATE' +
+                '&text=' + encodeURIComponent(event.title || '') +
+                '&dates=' + encodeURIComponent(dates) +
+                '&details=' + encodeURIComponent(event.description || '') +
+                '&location=' + encodeURIComponent(event.address || '') +
+                '&sprop=&sprop=name:';
             return '<a class="icon-google" target="_blank" href="' +
                 href + '">Google Calendar</a>';
         },
@@ -50,14 +48,13 @@
             var st = formatTime(new Date(event.start - (event.start.getTimezoneOffset() *
                 MS_IN_MINUTES))) || '';
 
-            var href = encodeURI([
-                'http://calendar.yahoo.com/?v=60&view=d&type=20',
-                '&title=' + (event.title || ''),
-                '&st=' + st,
-                '&dur=' + (yahooEventDuration || ''),
-                '&desc=' + (event.description || ''),
-                '&in_loc=' + (event.address || '')
-            ].join(''));
+            var href =
+                'http://calendar.yahoo.com/?v=60&view=d&type=20' +
+                '&title=' + encodeURIComponent(event.title || '') +
+                '&st=' + encodeURIComponent(st) +
+                '&dur=' + encodeURIComponent(yahooEventDuration || '') +
+                '&desc=' + encodeURIComponent(event.description || '') +
+                '&in_loc=' + encodeURIComponent(event.address || '');
 
             return '<a class="icon-yahoo" target="_blank" href="' +
                 href + '">Yahoo! Calendar</a>';
